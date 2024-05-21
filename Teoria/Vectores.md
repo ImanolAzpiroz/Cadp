@@ -66,5 +66,5 @@ end;
 
 ## Borrar Elemento
 
-busqueda binaria
+## busqueda binaria
 

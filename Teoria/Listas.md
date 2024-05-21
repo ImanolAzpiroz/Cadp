@@ -1,6 +1,17 @@
 
 <h1 align="center" >Listas</h1>
 
+Indice
+- [Declaracion](#declaracion)
+- Agregar
+    - [Adelante](#agregar-adelante)
+    - [Atras](#agregar-atras)
+    - [Ordenado](#insertar-ordenado)
+- Recorrido
+    - [Total](#recorrido-total)
+    - [Parcial](#recorrido-parcial)
+- [Borrar Elemento](#borrar-elemento)
+
 ## Declaracion
 ``` pascal
 type 
