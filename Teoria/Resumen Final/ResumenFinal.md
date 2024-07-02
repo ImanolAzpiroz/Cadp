@@ -237,6 +237,79 @@ Ejemplos
 
 ## Algoritmos
 
+<details><summary>Vectores</summary>
+
+### Busqueda Vector Desordenado 
+
+
+```pascal
+function Buscar(v: vector; dl: integer; valor: integer): boolean
+var
+    esta: boolean;
+    pos: integer;
+begin
+    esta:= false;
+    pos:= 1;
+    while(pos <= diml) and (not esta) do begin
+        if (v[pos] = valor) then
+            esta := true
+        else
+            pos:= pos + 1;
+    end;
+    buscar:= esta;
+end;
+
+```
+
+### Busqueda Vector Ordenado
+
+
+```pascal
+function Buscar(v: vector; dl: integer; valor: integer): boolean
+var
+    esta: boolean;
+    pos: integer;
+begin
+    esta:= false;
+    pos:= 1;
+    while(pos <= diml) and (v[pos] < valor) do
+        pos:= pos + 1;
+    if(pos <= dl) and (v[pos] = valor) then
+        esta:= true;
+    buscar:= esta;
+end;
+
+```
+
+### Busqueda Dicotomica
+
+
+```pascal
+function BusquedaDicotomica(v: vector; dl: integer; valor: integer): boolean
+var
+    esta: boolean;
+    pri, ult, medio: integer;
+begin
+    esta:= false;
+    pri:= 1; 
+    ult:= dl; 
+    medio:= (pri + ult) div 2;
+    while(pri <= ult) and (valor <> v[medio]) do begin
+        if(valor < v[medio]) then
+            ult:= medio - 1;
+        else
+            pri:= medio + 1; 
+        medio:= (pri + ult) div 2;
+    end;
+    if (pri <= ult) and (valor = v[medio]) then
+        esta:= true;
+    BusquedaDicotomica:= esta;
+end;
+
+```
+</details>
+
+
 <details><summary>Listas</summary>
 
 <p> Insertar Ordenado </p>
@@ -310,6 +383,31 @@ begin
         if (act^.dato <> d) then    
             ant:= act;
             act:= act^.sig;
+        else begin
+            if (act = l) then               
+                l:= l^.sig;
+            else
+                ant^.sig:= act^.sig;
+            dispose(act);
+            act:= ant;
+    end;
+end;
+```
+
+<p> Borrar Elemento en lista ordenada</p>
+
+``` pascal
+procedure BorrarElementoRepe(var l: lista; t: tipoDato);   // Lista ordenada
+var
+    ant, act: lista;
+begin
+    act:= l;
+    // Busco la pos
+    while(act <> nil) and (act^.dato < t) do begin        // Recorro la lista parcialmente
+        if (act^.dato <> d) then begin   
+            ant:= act;
+            act:= act^.sig;
+        end
         else begin
             if (act = l) then               
                 l:= l^.sig;
@@ -404,9 +502,93 @@ end;
     
 
 4) 
+```
+// Compuesto: puede tener varios valores al mismo tiempo
+// Estatico: Su tamanio no cambia durante la ejecucion
+// Homogeneo: Todos sus datos son del mismo tipo
+// Lineal: Sus elementos tiene un unico o cero predecedores y/o sucesores.
+// De acceso directo: se accede directamente a un campo sin necesidad de pasar por los anteriores.
+```
 
+
+
+5) 
+<p> a) Memoria Estatica </p>
+
+``` pascal
+var
+    v: vector;              // Vector (pos + tipo) = 10 * 4 = 40 bytes
+    i: integer;             // integer = 4bytes
+    sum: integer;           // Integer = 4bytes
+    nota: notas             // Subrango integer = 4 bytes
+    apeNom: cadena20;       // String (long + 1) = 21 bytes
+
+    // Total = 40 + 4 + 4 + 4 + 21 = 73 bytes
+```
+<p> b) Memoria Dinamica </p>
+
+``` pascal
+
+alumno = 21 + 4 = 25 bytes
+
+for i:= 1 to 10 do
+    new(v[i])           // (10 - 1) + 1 =  10 * 25 = 250 bytes
+```
+<p> Tiempo de ejecucion</p>
+
+``` pascal
+- Primer for
+// 1) For 3(N) + 2 + N(cuerpo)
+// Cuerpo = 2ut
+// 3(10) + 2 + 10(2) = 30 + 2 + 20 = 52 ut
+
+- sum := 0    // 1ut
+
+- while
+// C(N + 1) + N(cuerpo)
+// cuerpo = 2ut
+// C = 1ut
+// 1(N + 1) + N(2)
+// N + 1 + 2N
+// = 3N + 1
+
+El total seria: 
+// 54 + N3 unidades de tiempo
+```
 
 </details>
 
+<details><summary>Final 2</summary>
+
+![image](https://github.com/ImanolAzpiroz/Cadp/assets/122705871/56c8bdc2-690c-4d03-8b8d-8e63c5aada6e)
+
+4) 
+<p> Memoria Estatica</p>
+
+``` pascal
+// dimF = 2
+// v = 10 * 4 = 40 bytes
+// e = emple = 12 + 2 + 6 = 20 bytes
+// i = 2 bytes
+
+// Total = 64 bytes de memoria estatica 
+```
+
+<p>Memoria Dinamica</p>
+
+``` pascal
+// emple = 20 bytes
+// repeat until C(N)+ N(cuerpo)
+// N + N(20)
+// 21N                                 // No estoy seguro de que este bien
+
+// Total = 21N bytes de memoria dinamica
 
 
+
+// Otra opcion (El peor caso)
+// El vector tiene 10 posiciones
+// 10 * 20 = 200 bytes de memoria dinamica.
+```
+<p>Tiempo de ejecucion</p>p
+</details>
