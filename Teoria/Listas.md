@@ -58,21 +58,28 @@ procedure InsertarOrdenado(var L: lista; t: tipoDato);
 var
     nue, act, ant: lista;
 begin
-    new(nue);
-    nue^.dato:= t;
-    act:= l;
-    ant:= l;
-    // Busco la posicion (Depende la condición)
-    while(act <> nil) and (act^.dato.nro < t.nro) do begin
-        ant:= act;
-        act:= act^.sig;
+    new(nue); nue^.dato:= t; nue^.sig:= nil;
+
+    if(l = nil) then                // Nuevo nodo como 1ro si la lista esta vacia.
+        l:= nue;
+
+    else begin    
+        act:= l; ant:= l;          // Busco la posicion (Depende la condición)
+        while (act <> nil) and (act^.dato.nro < t.nro) do begin      
+            ant:= act;
+            act:= act^.sig;
+        end;
+
+        if (l = act) then          // Nuevo nodo como 1ro
+            nue^.sig:= l;
+            l:= nue
+        else if(act <> nil) then   // Nuevo nodo como intermedio
+            ant^.sig:= nue;
+            nue^.sig:= act
+        else
+            ant^.sig:= nue;        // Nuevo nodo como final
+            nue^.sig:= nil;
     end;
-    // Modifico los nodos
-    if(ant = act) then
-        l:= nue
-    else
-        ant^.sig:= nue;
-    nue^.sig:= act; 
 end;
 ```
 
