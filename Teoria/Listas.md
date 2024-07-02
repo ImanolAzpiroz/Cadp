@@ -105,13 +105,14 @@ begin
 end;
 ```
 
-## Borrar Elemento
+
+## Borrar Elemento sin repeticiones
+
 ``` pascal
-procedure BorrarElemento(var l: lista; t: tipoDato; var exitoo: boolean);
+procedure BorrarElemento(var l: lista; t: tipoDato);   // Lista desordenada sin repeticiones
 var
     ant, act: lista;
 begin
-    exito:= false;
     act:= l;
     // Busco la pos
     while(act <> nil) and (act^.dato <> t) do begin
@@ -119,15 +120,38 @@ begin
         act:= act^.sig;
     end;
 
-    if(act <> nil) then begin
-        exito:= true;
+    if(act <> nil) then                 // Si act = nil (lista vacia o no esta el elem)
         if (act = l) then
-            l:= act^.sig
+            l:= act^.sig                // Si es el primer elemento
         else
             ant^.sig:= act^.sig;
 
-        // Libero la memoria
-        dispose(act);
+        dispose(act);                   // Libero la memoria
+       
+    end;
+end;
+```
+
+## Borrar Elemento con repeticiones
+
+``` pascal
+procedure BorrarElementoRepe(var l: lista; t: tipoDato);   // Lista desordenada con repeticiones
+var
+    ant, act: lista;
+begin
+    act:= l;
+    // Busco la pos
+    while(act <> nil) do begin              // Recorro la lista completa
+        if (act^.dato <> d) then    
+            ant:= act;
+            act:= act^.sig;
+        else begin
+            if (act = l) then               
+                l:= l^.sig;
+            else
+                ant^.sig:= act^.sig;
+            dispose(act);
+            act:= ant;
     end;
 end;
 ```

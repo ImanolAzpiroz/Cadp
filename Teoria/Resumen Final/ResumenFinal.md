@@ -237,6 +237,7 @@ Ejemplos
 
 ## Algoritmos
 
+-------------
 <details><summary>Vectores</summary>
 
 ### Busqueda Vector Desordenado 
@@ -312,7 +313,7 @@ end;
 
 <details><summary>Listas</summary>
 
-<p> Insertar Ordenado </p>
+### Insertar Ordenado 
 
 ```pascal
 procedure InsertarOrdenado(var L: lista; t: tipoDato);
@@ -344,7 +345,7 @@ begin
 end;
 ```
 
-<p> Borrar Elemento sin repeticiones </p>
+### Borrar Elemento sin repeticiones 
 
 ``` pascal
 procedure BorrarElemento(var l: lista; t: tipoDato);   // Lista desordenada sin repeticiones
@@ -370,7 +371,7 @@ begin
 end;
 ```
 
-<p> Borrar Elemento con repeticiones</p>
+### Borrar Elemento con repeticiones
 
 ``` pascal
 procedure BorrarElementoRepe(var l: lista; t: tipoDato);   // Lista desordenada con repeticiones
@@ -394,7 +395,7 @@ begin
 end;
 ```
 
-<p> Borrar Elemento en lista ordenada</p>
+### Borrar Elemento en lista ordenada
 
 ``` pascal
 procedure BorrarElementoRepe(var l: lista; t: tipoDato);   // Lista ordenada
@@ -424,6 +425,9 @@ end;
 
 
 ## Finales
+
+
+[//]: <> (-----------------------------------------------------)
 
 <details><summary>Final 1</summary>
 
@@ -558,6 +562,9 @@ El total seria:
 
 </details>
 
+
+[//]: <> (-----------------------------------------------------)
+
 <details><summary>Final 2</summary>
 
 ![image](https://github.com/ImanolAzpiroz/Cadp/assets/122705871/56c8bdc2-690c-4d03-8b8d-8e63c5aada6e)
@@ -590,5 +597,52 @@ El total seria:
 // El vector tiene 10 posiciones
 // 10 * 20 = 200 bytes de memoria dinamica.
 ```
-<p>Tiempo de ejecucion</p>p
+<p>Tiempo de ejecucion</p>
+</details>
+
+
+
+[//]: <> (-----------------------------------------------------)
+
+<details><summary>Final 3</summary>
+
+![image](https://github.com/ImanolAzpiroz/Cadp/assets/122705871/4c1cd1f2-e49e-4ea0-b9ed-c9f869d8f031)
+
+3)
+
+<p> Memoria Estatica</p>
+
+``` pascal
+// vector = 40 * 4 = 160 bytes
+// a = 26 + 4 = 30 bytes
+// i = 4 bytes
+
+// Total = 194 bytes bytes de memoria estatica 
+```
+
+<p>Memoria Dinamica</p>
+
+``` pascal
+// 11 iteraciones del for (11 new de alumno)
+// 30 * 11 = 330 bytes
+// -1 dispose
+// 330 - 30
+
+// Total = 300 bytes de memoria dinamica
+```
+<p>Tiempo de ejecucion</p>
+
+``` pascal
+// 1) Primer For
+//    3(N) + 2 + N (cuerpo)
+//    cuerpo = 2 asignaciones
+//    3(11) + 2 + 11(2)
+//    33 + 2 + 22
+//    57 UT
+
+// v[15] := nil;  1 UT
+
+// Total = 58 UT
+```
+
 </details>
